@@ -1,0 +1,10 @@
+http://localhost:8080/auth/realms/ecom-realm/protocol/openid-connect/auth?response_type=code&client_id=products-app&redirect_uri=http%3A%2F%2Flocalhost%3A8082%2Fsso%2Flogin&state=2edc900b-d16e-486e-96bb-f21f561a464a&login=true&scope=openid
+
+keycloak administration
+login: admin
+pwd : admin
+
+utilisateur du realm : ecom-realm
+
+login : moussakatbedril@gmail.com
+pwd:12345

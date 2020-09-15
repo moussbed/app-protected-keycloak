@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template">
+<head>
+    <meta charset="UTF-8">
+    <title>Suppliers</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <table class="table">
+        <tr>
+            <th>ID</th> <th>Name</th> <th>Email</th>
+        </tr>
+        <tr th:each="s:${supliers}">
+            <td th:text="${s.getId()}"></td>
+            <td th:text="${s.getName()}"></td>
+            <td th:text="${s.getEmail()}"></td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>
