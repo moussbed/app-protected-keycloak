@@ -1,0 +1,19 @@
+<div class="container mt-2">
+    <h3>Products</h3>
+    <table class="table table-bordered">
+        <thead>
+         <tr>
+            <th>ID</th>
+            <th>Designation</th>
+            <th>Price</th>
+         </tr>
+       </thead>
+       <tbody>
+        <tr *ngFor="let product of products">
+            <td>{{product.id}}</td>
+            <td>{{product.designation}}</td>
+            <td>{{product.price}}</td>
+        </tr>
+       </tbody>
+    </table>
+</div>

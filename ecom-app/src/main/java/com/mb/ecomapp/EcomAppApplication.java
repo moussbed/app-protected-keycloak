@@ -30,6 +30,7 @@ import org.springframework.security.web.authentication.session.RegisterSessionAu
 import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -102,10 +103,11 @@ class  ProductController{
 	}
 
 	@GetMapping(value = "/changePassword")
-	public String changePassword(RedirectAttributes atributes, HttpServletRequest request, HttpServletResponse response){
+	public String changePassword(RedirectAttributes attributes, HttpServletRequest request, HttpServletResponse response){
 		HttpFacade facade = new SimpleHttpFacade(request,response);
 		KeycloakDeployment deployment = adapterDeploymentContext.resolveDeployment(facade);
-		atributes.addAttribute("referrer", deployment.getResourceName());
+		attributes.addAttribute("referrer", deployment.getResourceName());
+		attributes.addAttribute("referrer_uri",request.getHeader("referer") );
 		return "redirect:"+ deployment.getAccountUrl() +"/password";
 	}
 
@@ -115,6 +117,11 @@ class  ProductController{
 		response = keycloakRestTemplate.exchange("http://localhost:8083/suppliers", HttpMethod.GET, null, new ParameterizedTypeReference<PagedModel<Supplier>>() {});
 		model.addAttribute("supliers", response.getBody().getContent());
 		return "suppliers";
+	}
+
+	@ExceptionHandler(value = Exception.class)
+	public String  errorHandler(){
+		return "error";
 	}
 }
 
